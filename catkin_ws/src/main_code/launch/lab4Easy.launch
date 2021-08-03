@@ -1,0 +1,31 @@
+<launch>
+
+    <env name="GAZEBO_MODEL_PATH" value="$(find rbe3002_final)/models:$(optenv GAZEBO_MODEL_PATH"/>
+    <include file="$(find rbe3002-turtlebot)/launch/turtlebot3002_world.launch">
+        <!--<arg name="world_name" value="$(find rbe3002_final)/worlds/final_maze.world"/>-->
+        <arg name="world_name" value="$(find rbe3002_final)/worlds/final_maze_easier.world"/>
+        <arg name="x_pos" value="-2.2"/>
+        <arg name="y_pos" value="0.4"/>
+        <arg name="z_pos" value="0.05"/>
+    </include>
+    
+    
+    <!-- Added to BASHRC export TURTLEBOT3_MODEL=burger-->
+
+    <!--<include file="$(find RBE3002_template)/launch/maze_sim.launch"/>-->
+    <include file="$(find RBE3002_template)/launch/practice_exploration.launch"/>
+    <!-- <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>  -->
+    
+    <!-- <include file="$(find turtlebot3_slam)/launch/turtlebot3_slam.launch">
+        <arg name="slam_methods" value="gmapping"/>
+    </include> -->
+
+
+    <node pkg="rbe3002_lab3" type="Lab3DriveCode.py" name="Lab3DriveCode" output="screen"/>
+    <node pkg="rbe3002_lab3" type="FrontierLocator.py" name="frontier_locator" output="screen"/>
+    <node pkg="rbe3002_lab3" type="path_planner.py" name="path_planner" output="screen"/> 
+
+    <node type="rviz" name="rviz2" pkg="rviz" args="-d $(find rbe3002_lab3)/rviz/rbe3002_lab4.rviz"/>
+    
+
+</launch>

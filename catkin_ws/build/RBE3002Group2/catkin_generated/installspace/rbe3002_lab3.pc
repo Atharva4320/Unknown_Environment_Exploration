@@ -1,0 +1,8 @@
+prefix=/home/atharva/catkin_ws/install
+
+Name: rbe3002_lab3
+Description: Description of rbe3002_lab3
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
